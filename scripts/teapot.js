@@ -18,6 +18,7 @@ var Page = {
   Page.link    = document.createElement("link");
   Page.script  = document.createElement("script");
   Page.anchor  = document.createElement("a");
+  Page.canvas  = document.createElement("canvas");
   Page.image   = document.createElement("img");
   Page.header  = document.createElement("header");
   Page.article = document.createElement("article");
@@ -30,6 +31,7 @@ var Page = {
   Page.code    = document.createElement("code");
   Page.br      = document.createElement("br");
 
+
     Page.html.setAttribute("lang", "en");
     Page.head.setAttribute("data-head", "I\'m a Teapot");
     Page.meta.setAttribute("charset", "UTF-8");
@@ -40,6 +42,10 @@ var Page = {
     Page.script.setAttribute("src", "scripts\/saucer.js");
     Page.script.setAttribute("type", "application\/javascript");
     Page.body.setAttribute("id", "bdy");
+    Page.canvas.setAttribute("id", "hemp");
+    Page.canvas.setAttribute("width", innerWidth);
+    Page.canvas.setAttribute("height", innerHeight);
+    Page.canvas.setAttribute("style", "position:fixed");
     Page.image.setAttribute("src", "images\/teapoteche.svg");
     Page.image.setAttribute("alt", "I\'m a Teapot");
     Page.image.setAttribute("width", "auto");
@@ -54,6 +60,7 @@ var Page = {
     Page.head.appendChild(Page.title);
     Page.head.appendChild(Page.link);
     Page.head.appendChild(Page.script);
+    Page.body.appendChild(Page.canvas);
     Page.body.appendChild(Page.header);
     Page.body.appendChild(Page.article);
       Page.article.appendChild(Page.section);
@@ -63,9 +70,24 @@ var Page = {
     Page.article.insertBefore(Page.image, Page.section);
     Page.article.insertBefore(Page.br, Page.image);
 
+var CanvasContext = Page.canvas.getContext("2d");
+      CanvasContext.fillStyle = "LightSeaGreen";
+     CanvasContext.fillRect(0, 0, innerWidth, innerHeight);
+    CanvasContext.beginPath();
+   CanvasContext.moveTo(0, 0);
+  CanvasContext.lineTo(0, innerHeight/1.335);
+ CanvasContext.lineTo(innerWidth/1.498, innerHeight/1.335);
+CanvasContext.lineTo(innerWidth/1.498, 0);
+ CanvasContext.closePath();
+  CanvasContext.lineWidth = 3;
+   CanvasContext.strokeStyle = "Wheat";
+    CanvasContext.stroke();
+
+    Page.body.style.margin = 0;
     Page.body.style.fontFamily = "\'DejaVu Sans Mono\', monospace";
     Page.body.style.fontSize = "32px";
     Page.body.style.color = "DarkSlateGrey";
+    Page.canvas.style.opacity = 0.2;
     Page.header.style.opacity = 0.4;
     Page.section.style.opacity = 0.2;
     Page.aside.style.opacity = 0.4;
