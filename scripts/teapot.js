@@ -32,10 +32,15 @@ var Page = {
   Page.br      = document.createElement("br");
   Page.para    = document.createElement("p");
 
+  Page.title    .textContent = "\x49\x27\x6D\x20\x61\x20\x54\x65\x61\x70\x6F\x74";
+  Page.section  .textContent = Page.title.textContent;
+  Page.aside    .textContent = Page.section.textContent;
+  Page.footer   .textContent = Page.aside.textContent;
+
     Page.html   .setAttribute("lang", "en");
-    Page.head   .setAttribute("data-head", "I\'m a Teapot");
+    Page.head   .setAttribute("data-head", Page.title.textContent);
     Page.meta   .setAttribute("charset", "UTF-8");
-    Page.title  .setAttribute("data-title", "I\'m a Teapot");
+    Page.title  .setAttribute("data-title", Page.title.textContent);
     Page.link   .setAttribute("rel", "stylesheet");
     Page.link   .setAttribute("href", "styles\/porcelain.css");
     Page.link   .setAttribute("type", "text\/css");
@@ -47,14 +52,14 @@ var Page = {
     Page.canvas .setAttribute("height", innerHeight);
     Page.canvas .setAttribute("style", "position:fixed");
     Page.image  .setAttribute("src", "images\/teapoteche.svg");
-    Page.image  .setAttribute("alt", "I\'m a Teapot");
+    Page.image  .setAttribute("alt", Page.title.textContent);
     Page.image  .setAttribute("width", "auto");
     Page.image  .setAttribute("height", "auto");
     Page.header .setAttribute("id", "hdr");
     Page.article.setAttribute("id", "art");
     Page.section.setAttribute("id", "sec");
     Page.aside  .setAttribute("id", "asd");
-    Page.aside  .setAttribute("data-aside", "I\'m a Teapot");
+    Page.aside  .setAttribute("data-aside", Page.title.textContent);
     Page.footer .setAttribute("id", "ftr");
     Page.div    .setAttribute("id", "dv");
 
@@ -68,7 +73,7 @@ var Page = {
     Page.article.appendChild(Page.section);
     Page.section.appendChild(Page.aside);
     Page.body   .appendChild(Page.footer);
-    Page.div    .appendChild(document.createTextNode(Page.head.dataset.head));
+    Page.div    .appendChild(document.createTextNode(Page.title.textContent));
 
     Page.body     .insertBefore(Page.aside, Page.article.nextSibling);
     Page.article  .insertBefore(Page.image, Page.section);
@@ -76,6 +81,7 @@ var Page = {
     Page.article  .insertBefore(Page.div,   Page.section.nextSibling);
 
     Page.body    .style.margin = 0;
+    Page.body.style.paddingTop = innerHeight/1122.5 + "em";
     Page.body.style.fontFamily = "\'DejaVu Sans Mono\', monospace";
     Page.body  .style.fontSize = "32px";
     Page.body     .style.color = "DarkSlateGrey";
@@ -95,6 +101,15 @@ CanvasContext.lineTo(innerWidth/1.498, 0);
    CanvasContext.strokeStyle = "Wheat";
     CanvasContext.stroke();
 
+    Page.canvas   .style.opacity = 0.2;
+    Page.header   .style.opacity = 0.4;
+    Page.article  .style.opacity = 1.0;
+    Page.image    .style.opacity = 0.9;
+    Page.section  .style.opacity = 0.1;
+    Page.div      .style.opacity = 0.3;
+    Page.aside    .style.opacity = 0.5;
+    Page.footer   .style.opacity = 0.7;
+
     Page.header   .style.paddingLeft = innerWidth/672.7 + "em";
     Page.article  .style.paddingLeft = innerWidth/336.4 + "em";
     Page.image    .style.paddingLeft = innerWidth/224.5 + "em";
@@ -103,17 +118,11 @@ CanvasContext.lineTo(innerWidth/1.498, 0);
     Page.aside    .style.paddingLeft = innerWidth/336.4 + "em";
     Page.footer   .style.paddingLeft = innerWidth/672.7 + "em";
 
-    Page.canvas   .style.opacity = 0.2;
-    Page.header   .style.opacity = 0.4;
-    Page.section  .style.opacity = 0.1;
-    Page.div      .style.opacity = 0.3;
-    Page.aside    .style.opacity = 0.5;
-    Page.footer   .style.opacity = 0.7;
-
-    Page.title    .textContent = "I\'m a Teapot";
-    Page.section  .textContent = Page.title.textContent;
-    Page.aside    .textContent = Page.section.textContent;
-    Page.footer   .textContent = Page.aside.textContent;
+  for (var i = 0; i < Page.body.children.length; i++) {
+    Page.body.children[i + 1].style.paddingTop = innerHeight/1259.9 + "em";
+    Page.body.children[i + 1].style.width      = "85%";
+    Page.body.children[i + 1].style.border     = "1px dotted LightSkyBlue";
+  }
 
 };
 
