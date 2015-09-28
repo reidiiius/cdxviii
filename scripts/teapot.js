@@ -1,6 +1,6 @@
 "use strict";
 
-onload = function() {
+window.onload = function() {
 
 var Page = {
     html : document.documentElement,
@@ -75,6 +75,13 @@ var Page = {
     Page.article  .insertBefore(Page.br,    Page.image);
     Page.article  .insertBefore(Page.div,   Page.section.nextSibling);
 
+    Page.body    .style.margin = 0;
+    Page.body.style.fontFamily = "\'DejaVu Sans Mono\', monospace";
+    Page.body  .style.fontSize = "32px";
+    Page.body     .style.color = "DarkSlateGrey";
+
+    Page.canvas   .style.zIndex = "-1";
+
 var CanvasContext = Page.canvas.getContext("2d");
       CanvasContext.fillStyle = "LightSeaGreen";
      CanvasContext.fillRect(0, 0, innerWidth, innerHeight);
@@ -87,13 +94,6 @@ CanvasContext.lineTo(innerWidth/1.498, 0);
   CanvasContext.lineWidth = 3;
    CanvasContext.strokeStyle = "Wheat";
     CanvasContext.stroke();
-
-    Page.body    .style.margin = 0;
-    Page.body.style.fontFamily = "\'DejaVu Sans Mono\', monospace";
-    Page.body  .style.fontSize = "32px";
-    Page.body     .style.color = "DarkSlateGrey";
-
-    Page.canvas   .style.zIndex = "-1";
 
     Page.header   .style.paddingLeft = innerWidth/672.7 + "em";
     Page.article  .style.paddingLeft = innerWidth/336.4 + "em";
