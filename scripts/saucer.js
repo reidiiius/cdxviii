@@ -14,5 +14,13 @@ var xTxt = document.createTextNode(xHdr.textContent);
 var xBdy = document.getElementById("bdy");
   xBdy.appendChild(xTxt);
 
+var teapoTeche = "url(\'images\/teapoteche.svg\')";
+
+var artEcho = document.querySelector("article");
+  artEcho.style.backgroundImage    = teapoTeche;
+  artEcho.style.backgroundColor    = "Beige";
+  artEcho.style.backgroundPosition = "80% 35%";
+  artEcho.style.backgroundRepeat   = "no-repeat";
+
 })();
 
