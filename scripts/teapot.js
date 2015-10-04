@@ -8,71 +8,98 @@ var Page = {
   body : document.body
 };
 
-  Page.meta    = document.createElement("meta");
-  Page.title   = document.createElement("title");
-  Page.link    = document.createElement("link");
-  Page.script  = document.createElement("script");
-  Page.anchor  = document.createElement("a");
-  Page.image   = document.createElement("img");
-  Page.canvas  = document.createElement("canvas");
-  Page.header  = document.createElement("header");
-  Page.article = document.createElement("article");
-  Page.section = document.createElement("section");
-  Page.aside   = document.createElement("aside");
-  Page.footer  = document.createElement("footer");
-  Page.span    = document.createElement("span");
-  Page.div     = document.createElement("div");
-  Page.pre     = document.createElement("pre");
-  Page.code    = document.createElement("code");
-  Page.br      = document.createElement("br");
-  Page.para    = document.createElement("p");
-
-  Page.title  .textContent = "\x49\x27\x6D\x20\x61\x20\x54\x65\x61\x70\x6F\x74";
-  Page.section.textContent = Page.title.textContent;
-  Page.aside  .textContent = Page.section.textContent;
-  Page.footer .textContent = Page.aside.textContent;
-
   Page.html   .setAttribute("lang", "en");
-  Page.head   .setAttribute("data-head", Page.title.textContent);
+
+  Page.meta    = document.createElement("meta");
   Page.meta   .setAttribute("charset", "UTF-8");
+  Page.head   .appendChild(Page.meta);
+
+  Page.title   = document.createElement("title");
+  Page.title  .textContent = "\x49\x27\x6D\x20\x61\x20\x54\x65\x61\x70\x6F\x74";
   Page.title  .setAttribute("data-title", Page.title.textContent);
+  Page.head   .appendChild(Page.title);
+
+  Page.link    = document.createElement("link");
+  Page.link   .setAttribute("rel", "icon");
+  Page.link   .setAttribute("href", "images\/favicon.png");
+  Page.link   .setAttribute("type", "image\/png");
+  Page.head   .appendChild(Page.link);
+
+  Page.link    = document.createElement("link");
   Page.link   .setAttribute("rel", "stylesheet");
   Page.link   .setAttribute("href", "styles\/porcelain.css");
   Page.link   .setAttribute("type", "text\/css");
+  Page.head   .appendChild(Page.link);
+
+  Page.script  = document.createElement("script");
   Page.script .setAttribute("src", "scripts\/saucer.js");
   Page.script .setAttribute("type", "application\/javascript");
+  Page.head   .appendChild(Page.script);
+
+  Page.head   .setAttribute("data-head", Page.title.textContent);
   Page.body   .setAttribute("id", "bdy");
+
+  Page.canvas  = document.createElement("canvas");
+  Page.canvas .setAttribute("id", "cnv");
+  Page.canvas .setAttribute("width", innerWidth);
+  Page.canvas .setAttribute("height", innerHeight);
+  Page.body   .appendChild(Page.canvas);
+
+  Page.header  = document.createElement("header");
+  Page.header .setAttribute("id", "hdr");
+  Page.body   .appendChild(Page.header);
+
+  Page.article = document.createElement("article");
+  Page.article.setAttribute("id", "art");
+  Page.body   .appendChild(Page.article);
+
+  Page.section = document.createElement("section");
+  Page.section.setAttribute("id", "sec");
+  Page.section.textContent = Page.title.textContent;
+  Page.article.appendChild(Page.section);
+
+  Page.aside   = document.createElement("aside");
+  Page.aside  .setAttribute("id", "asd");
+  Page.aside  .setAttribute("data-aside", Page.title.textContent);
+  Page.aside  .textContent = Page.section.textContent;
+  Page.body   .insertBefore(Page.aside, Page.article.nextSibling);
+
+  Page.footer  = document.createElement("footer");
+  Page.footer .setAttribute("id", "ftr");
+  Page.footer .textContent = Page.aside.textContent;
+  Page.body   .appendChild(Page.footer);
+
+  Page.image   = document.createElement("img");
   Page.image  .setAttribute("src", "images\/teapoteche.svg");
   Page.image  .setAttribute("alt", Page.title.textContent);
   Page.image  .setAttribute("width", "auto");
   Page.image  .setAttribute("height", "auto");
-  Page.canvas .setAttribute("id", "cnv");
-  Page.canvas .setAttribute("width", innerWidth);
-  Page.canvas .setAttribute("height", innerHeight);
-  Page.header .setAttribute("id", "hdr");
-  Page.article.setAttribute("id", "art");
-  Page.section.setAttribute("id", "sec");
-  Page.aside  .setAttribute("id", "asd");
-  Page.aside  .setAttribute("data-aside", Page.title.textContent);
-  Page.footer .setAttribute("id", "ftr");
-  Page.div    .setAttribute("id", "dv");
-
-  Page.head   .appendChild(Page.meta);
-  Page.head   .appendChild(Page.title);
-  Page.head   .appendChild(Page.link);
-  Page.head   .appendChild(Page.script);
-  Page.body   .appendChild(Page.canvas);
-  Page.body   .appendChild(Page.header);
-  Page.body   .appendChild(Page.article);
-  Page.article.appendChild(Page.section);
-  Page.section.appendChild(Page.aside);
-  Page.body   .appendChild(Page.footer);
-  Page.div    .appendChild(document.createTextNode(Page.title.textContent));
-
-  Page.body   .insertBefore(Page.aside, Page.article.nextSibling);
   Page.article.insertBefore(Page.image, Page.section);
+
+  Page.br      = document.createElement("br");
   Page.article.insertBefore(Page.br,    Page.image);
+
+  Page.div     = document.createElement("div");
+  Page.div    .setAttribute("id", "dv");
+  Page.div    .appendChild(document.createTextNode(Page.title.textContent));
   Page.article.insertBefore(Page.div,   Page.section.nextSibling);
+
+  Page.anchor  = document.createElement("a");
+  Page.anchor .setAttribute("name", Page.title.textContent);
+  Page.body   .insertBefore(Page.anchor, Page.article);
+
+  Page.pre     = document.createElement("pre");
+  Page.pre    .setAttribute("id", "pr");
+  Page.section.appendChild(Page.pre);
+
+  Page.code    = document.createElement("code");
+  Page.code   .setAttribute("data-code", Page.title.textContent);
+  Page.pre    .appendChild(Page.code);
+
+  Page.span    = document.createElement("span");
+  Page.span   .setAttribute("style", "display:none");
+  Page.span   .textContent = Page.title.textContent;
+  Page.code   .appendChild(Page.span);
 
   Page.body    .style.margin = 0;
   Page.body.style.paddingTop = innerHeight/1122.5 + "em";
