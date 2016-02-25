@@ -11,7 +11,7 @@ var xHdr = document.getElementById("hdr");
   xHdr.textContent = teaPotTitle.dataset.title;
 
 var xTxt = document.createTextNode(xHdr.textContent);
-var xBdy = document.getElementById("bdy");
+var xBdy = document.getElementsByTagName("body")[0];
   xBdy.appendChild(xTxt);
 
 var teapoTeche = "url(\'images\/teapoteche.svg\')";
