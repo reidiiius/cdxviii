@@ -16,15 +16,13 @@ var xSpn = document.createElement("span");
 
 var xTxt = document.createTextNode("\u2600");
 
-var teapoTeche = "url(\'images\/teapoteche.svg\')";
-
 var artEcho = document.querySelector("article");
 
 requestAnimationFrame(function() {
   xHdr.textContent = teaPotTitle.dataset.title;
   xArt.insertAdjacentHTML("afterbegin", teaPotHead.dataset.head);
 
-  artEcho.style.backgroundImage    = teapoTeche;
+  artEcho.style.backgroundImage    = "url(" + BayouTeche.teapot.src + ")";
   artEcho.style.backgroundColor    = "Beige";
   artEcho.style.backgroundPosition = "80% 35%";
   artEcho.style.backgroundRepeat   = "no-repeat";

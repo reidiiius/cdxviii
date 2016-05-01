@@ -1,5 +1,13 @@
 "use strict";
 
+var BayouTeche = new Object();
+
+  BayouTeche.teapot = new Image(100, 100);
+  BayouTeche.teapot.src = "images\/teapoteche.svg";
+  BayouTeche.teapot.alt = "Teche Teapot";
+
+  Object.freeze(BayouTeche.teapot);
+
 window.onload = function() {
 
 var Page = {
@@ -8,30 +16,32 @@ var Page = {
   body : document.body
 };
 
+var scripTagZero = document.getElementsByTagName("script")[0];
+
   Page.html   .setAttribute("lang", "");
 
   Page.meta    = document.createElement("meta");
   Page.meta   .setAttribute("charset", "UTF-8");
-  Page.head   .appendChild(Page.meta);
+  Page.head   .insertBefore(Page.meta, scripTagZero);
 
   Page.title   = document.createElement("title");
   Page.title  .textContent = btoa("\x49\x27\x6D\x20\x61\x20\x54\x65\x61\x70\x6F\x74");
   Page.title  .setAttribute("data-title", Page.title.textContent);
 
   Page.head   .setAttribute("data-head", Page.title.textContent);
-  Page.head   .appendChild(Page.title);
+  Page.head   .insertBefore(Page.title, scripTagZero);
 
   Page["link favicon"]    = document.createElement("link");
   Page["link favicon"]   .setAttribute("rel", "icon");
   Page["link favicon"]   .setAttribute("href", "images\/favicon.png");
   Page["link favicon"]   .setAttribute("type", "image\/png");
-  Page.head              .appendChild(Page["link favicon"]);
+  Page.head              .insertBefore(Page["link favicon"], scripTagZero);
 
   Page.link_porcelain    = document.createElement("link");
   Page.link_porcelain   .setAttribute("rel", "stylesheet");
   Page.link_porcelain   .setAttribute("href", "styles\/porcelain.css");
   Page.link_porcelain   .setAttribute("type", "text\/css");
-  Page.head             .appendChild(Page.link_porcelain);
+  Page.head             .insertBefore(Page.link_porcelain, scripTagZero);
 
   Page.script_saucer  = document.createElement("script");
   Page.script_saucer .setAttribute("src", "scripts\/saucer.js");
@@ -121,7 +131,7 @@ CanvasContext.lineTo((innerWidth/1.498).toFixed(3), 0);
   Page.code   .appendChild(Page.span);
 
   Page["image teapoteche"] = document.createElement("img");
-  Page["image teapoteche"].setAttribute("src", "images\/teapoteche.svg");
+  Page["image teapoteche"].setAttribute("src", BayouTeche.teapot.src);
   Page["image teapoteche"].setAttribute("alt", Page.title.textContent);
   Page["image teapoteche"].setAttribute("width", "auto");
   Page["image teapoteche"].setAttribute("height", "auto");
@@ -136,7 +146,10 @@ CanvasContext.lineTo((innerWidth/1.498).toFixed(3), 0);
   Page.div    .setAttribute("id", "dv");
   Page.div    .style.opacity = 0.3;
   Page.div    .style.paddingLeft = (innerWidth/672.7).toFixed(3) + "em";
-  Page.div    .appendChild(document.createTextNode(Page.title.textContent));
+  Page.div.appendChild(document.createTextNode(Object.isExtensible(BayouTeche)));
+    if (!Object.isExtensible(BayouTeche.teapot)) {
+      Page.div.appendChild(BayouTeche.teapot);
+    }
   Page.article.insertBefore(Page.div, Page.section.nextSibling);
 
   Page.ostracon.appendChild(Page.article);
